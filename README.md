@@ -1,6 +1,6 @@
 # Project Management API
 
-A backend API for managing users, projects, and tasks. This app handles user authentication using JWTs, stores data in MongoDB, and enforces authorization rules ensuring users can only access their own data. Users own projects and projects have tasks. Each user can only access their own tasks by loggin in.
+A backend API for managing users, projects, and tasks. This app handles user authentication using JWTs, stores data in MongoDB, and enforces authorization rules ensuring users can only access their own data. Users own projects, and projects have tasks. Each user can only access their own tasks by logging in.
 
 ## Features
 
@@ -8,7 +8,7 @@ A backend API for managing users, projects, and tasks. This app handles user aut
 * **Modular Design**: Clean architecture separating concerns into routes, models, and configuration.
 * **Full CRUD Operations**: Complete functionality for creating, reading, updating, and deleting projects and tasks.
 * **Strict Authorization**: All project and task routes are protected, verifying ownership before allowing access or modification.
-* **Environment Configuration**: Uses dotenv to manage sensitive environment variables securely such as JWT secret, PORT number, and base url.
+* **Environment Configuration**: Uses dotenv to manage sensitive environment variables securely, such as JWT secret, PORT number, and base URL.
 
 ## Routes 
 
@@ -26,3 +26,24 @@ A backend API for managing users, projects, and tasks. This app handles user aut
 | GET | /api/projects/:projectId/tasks | gets all tasks for a specific project |
 | PUT | /api/tasks/:taskId | updates a single task |
 | DELETE | /api/tasks/:taskId | deletes a single task |
+
+## Setting up and Running Locally 
+
+Clone the project and install dependencies by running the following commands:
+
+```
+git clone https://github.com/Aram-1999/pro-tasker-backend.git <project_name>
+cd <project_name>
+npm i
+```
+Create a .env file and set up the following variables: 
+```
+MONGO_URI=<a link to the MongoDB database>
+JWT_SECRET=<any string>
+PORT=<a port number, such as 4000>
+FRONTEND_URL=<frontend URL such as http://localhost:5173>
+```
+Finally, run the server from the terminal:
+```
+npm run dev
+```
