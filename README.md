@@ -4,11 +4,11 @@ A backend API for managing users, projects, and tasks. This app handles user aut
 
 ## Features
 
-* **User Authentication**: Secure registration and login using bcrypt for password hashing and jsonwebtoken for session management.
+* **User Authentication**: Secure registration and login are implemented using bcrypt for password hashing and JSON Web Tokens for session management. An additional layer of protection is added through token invalidation after logout. When a user logs out, their token is stored in an invalid-token list in the database, ensuring that even if an attacker obtains the token, it can no longer be used. Each invalid token entry automatically expires based on the token’s lifespan.
 * **Modular Design**: Clean architecture separating concerns into routes, models, and configuration.
 * **Full CRUD Operations**: Complete functionality for creating, reading, updating, and deleting projects and tasks.
 * **Strict Authorization**: All project and task routes are protected, verifying ownership before allowing access or modification.
-* **Environment Configuration**: Uses dotenv to manage sensitive environment variables securely.
+* **Environment Configuration**: Uses dotenv to manage sensitive environment variables securely such as JWT secret, PORT number, and base url.
 
 ## Routes 
 
@@ -16,6 +16,7 @@ A backend API for managing users, projects, and tasks. This app handles user aut
 | --- | --- | --- |
 | POST | /api/users/login | logs in the user and returns token |
 | POST | /api/users/register | registers a new user using email, username, and password |
+| POST | /api/users/logout | stores the user’s token in the invalid-token storage for future validation checks
 | POST | /api/projects | creates a new project |
 | GET | /api/projects | gets all projects owned by the currently logged-in user. |
 | GET | /api/projects/:id | gets a single project by its ID |
